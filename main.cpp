@@ -103,8 +103,23 @@ string Week::next_day() {
 string Week::add(int a) {
     int rem;
     int final;
-    rem = a % 7;
-    rem = abs(rem);
+    rem = abs(a);
+    rem = rem % 7;
+    //cout << rem << endl;
+    if (a < 0) {
+
+        rem = 7 - rem;
+    } else {
+        rem = rem;
+        //rem = abs(rem);
+    }
+   // cout << rem;
     final = check() + rem;
-    return days_week[final];
+    if (final < 7)
+        return days_week[final];
+
+    if (final >= 7) {
+        final = (check() + rem) % 7;
+        return days_week[final];
+    }
 }
